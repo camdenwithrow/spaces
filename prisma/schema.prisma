@@ -11,6 +11,17 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 
+model Space {
+    id     String @id @default(cuid())
+    userId String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    name   String
+    amount Float
+    goal   Float?
+    user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
@@ -46,6 +57,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    spaces        Space[]
 }
 
 model VerificationToken {
