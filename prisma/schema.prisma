@@ -12,15 +12,27 @@ datasource db {
 }
 
 model Space {
-    id     String @id @default(cuid())
-    userId String
+    id        String @id @default(cuid())
+    userId    String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    name   String
-    amount Float
-    goal   Float?
-    user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    name      String
+    amount    Float
+    goal      Float?
+    user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+// model Balance {
+//     id                 String @id
+//     name               String
+//     officialName       String
+//     type               String
+//     subType            String
+//     currentBalance     Float
+//     availableBalance   Float
+//     limit              Float
+//     isoCurrencyCode    String
+// }
 
 // Necessary for Next auth
 model Account {

@@ -20,4 +20,10 @@ export const spaceRouter = createProtectedRouter()
     async resolve({ ctx, input }) {
       return await ctx.prisma.space.create({ data: input });
     },
+  })
+  .mutation("deleteSpace", {
+    input: z.string(),
+    async resolve({ ctx, input }) {
+      return await ctx.prisma.space.delete({ where: { id: input } });
+    },
   });
